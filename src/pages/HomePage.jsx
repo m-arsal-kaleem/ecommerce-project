@@ -1,8 +1,24 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
 import "./HomePage.css";
-import { products } from "../../starting-code/data/products";
 import { Header } from "../components/Header";
 
 export function HomePage() {
+  // fetch("http://localhost:3000/api/products")
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     console.log(data);
+  //   });
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
+    });
+  }, []);
+
   return (
     <>
       <title>Ecommerce Project</title>
